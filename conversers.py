@@ -185,6 +185,9 @@ class TargetLLM():
                 conv.append_message(conv.roles[1], None) 
                 full_prompts.append(conv.get_prompt())
 
+        print(">>> In get_response(), full_prompts[0]:", full_prompts[0])
+        # TODO: append suffix
+
         # Query the attack LLM in batched-queries with at most MAX_PARALLEL_STREAMS-many queries at a time
         outputs_list = []
         for left in range(0, len(full_prompts), MAX_PARALLEL_STREAMS):

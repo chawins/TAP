@@ -155,6 +155,12 @@ def main(args):
         
         adv_prompt_list = [attack["prompt"] for attack in extracted_attack_list]
         improv_list = [attack["improvement"] for attack in extracted_attack_list]
+
+        print("DEBUG")
+        print(">>> adv_prompt_list:", adv_prompt_list[0])
+        print(">>> improv_list:", improv_list[0])
+        import pdb
+        pdb.set_trace()
         
         ############################################################
         #   PRUNE: PHASE 1 
@@ -228,6 +234,11 @@ def main(args):
         for conv in convs_list:
             # Note that this does not delete the conv.role (i.e., the system prompt)
             conv.messages = conv.messages[-2*(args.keep_last_n):]
+
+        print(">>> adv_prompt_list:", adv_prompt_list[0])
+        print(">>> target_response_list:", target_response_list[0])
+        import pdb
+        pdb.set_trace()
 
         # Early stopping criterion
         if any([score == 10 for score in judge_scores]):

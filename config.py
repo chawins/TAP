@@ -1,5 +1,7 @@
-VICUNA_PATH = ".../project/vicuna-13b-v1.5/" # ADD PATH
-LLAMA_PATH = ".../project/Llama-2-7b-chat-hf" # ADD PATH
+# VICUNA_PATH = ".../project/vicuna-13b-v1.5/" # ADD PATH
+# LLAMA_PATH = ".../project/Llama-2-7b-chat-hf" # ADD PATH
+VICUNA_PATH = "/data/chawin_sitwarin/data/models/vicuna-13b-v1.5-16k"
+LLAMA_PATH = "/data/chawin_sitwarin/data/models/Llama-2-7b-chat-hf"
 
 VICUNA_API_LINK ="https://..." # ADD LINK
 LLAMA_API_LINK = "https://..." # ADD LINK

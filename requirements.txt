@@ -9,3 +9,8 @@ torch==2.1.0
 transformers==4.35.0
 urllib3==2.1.0
 google-generativeai==0.3.1
+accelerate
+wandb
+sentencepiece
+pyarrow
+fastparquet
