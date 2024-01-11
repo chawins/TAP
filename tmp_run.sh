@@ -1,6 +1,6 @@
 #!/bin/bash
 export WANDB_MODE=disabled
-export OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
+export OPENAI_API_KEY="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"
 
 python main_TAP.py \
     --attack-model "vicuna" \
@@ -11,3 +11,4 @@ python main_TAP.py \
     --store-folder "results"
 
 exit 0
+    # --store-folder [[FOLDER]]
