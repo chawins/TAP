@@ -3,8 +3,8 @@
 VICUNA_PATH = "/data/chawin_sitwarin/data/models/vicuna-13b-v1.5-16k"
 LLAMA_PATH = "/data/chawin_sitwarin/data/models/Llama-2-7b-chat-hf"
 
-VICUNA_API_LINK ="https://..." # ADD LINK
-LLAMA_API_LINK = "https://..." # ADD LINK
+VICUNA_API_LINK = "https://..."  # ADD LINK
+LLAMA_API_LINK = "https://..."  # ADD LINK
 
 
 ATTACK_TEMP = 1
@@ -13,5 +13,5 @@ ATTACK_TOP_P = 0.9
 TARGET_TOP_P = 1
 
 # Increase the above allow more streams in parallel
-# Decrease it to reduce the memory requirement 
+# Decrease it to reduce the memory requirement
 MAX_PARALLEL_STREAMS = 5

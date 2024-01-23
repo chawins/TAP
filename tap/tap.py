@@ -103,6 +103,7 @@ def prune(
 class TAP:
     def __init__(self, args):
         self.args = args
+        self.exp_mode = args.exp_mode
         self.attack_params = {
             "width": args.width,
             "branching_factor": args.branching_factor,
@@ -115,17 +116,21 @@ class TAP:
         self.evaluator_llm = load_evaluator(args)
         print("Done loading evaluator!", flush=True)
 
-    def run(self, goal: str, target_str: str):
+    def run(self, goal: str, target_str: str, **kwargs):
         # Initialize models and logger
-        system_prompt = get_attacker_system_prompt(goal, target_str)
+        system_prompt = get_attacker_system_prompt(
+            self.exp_mode, goal, target_str, **kwargs
+        )
         logger = WandBLogger(self.args, system_prompt)
         print("Done logging!", flush=True)
         original_prompt = goal
 
         # Initialize conversations
         batchsize = self.n_streams
-        init_msg = get_init_msg(goal, target_str)
+        init_msg = get_init_msg(goal, target_str, self.exp_mode)
         processed_response_list = [init_msg for _ in range(batchsize)]
+
+        # FIXME: Alpaca conversation template
         convs_list = [
             conv_template(
                 self.attack_llm.template, self_id="NA", parent_id="NA"
@@ -179,6 +184,14 @@ class TAP:
             improv_list = [
                 attack["improvement"] for attack in extracted_attack_list
             ]
+
+            if self.exp_mode == "ignore":
+                inst = kwargs["inst"]
+                inpt = kwargs["input"]
+                for i, prompt in enumerate(adv_prompt_list):
+                    # FIXME: format (need ### Instruction and ### Response?)
+                    new_prompt = f"{inst} ### Input: {inpt} {prompt} {goal}"
+                    adv_prompt_list[i] = new_prompt
 
             print("DEBUG")
             print(">>> adv_prompt_list:", adv_prompt_list[0])

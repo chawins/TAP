@@ -176,7 +176,7 @@ class APIModel(LanguageModel):
                 else:
                     output = resp_json
 
-                if type(output) == type([]):
+                if isinstance(output, list):
                     output = output[0]
 
                 break
